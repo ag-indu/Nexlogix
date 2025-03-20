@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Route Optimization</title>
+</head>
+<body>
+    <h2>Enter Route Details</h2>
+    <form method="POST">
+        {% csrf_token %}
+        
+        <label for="source">Source:</label>
+        <input type="text" name="source" required>
+        <br>
+        
+        <label for="destination">Destination:</label>
+        <input type="text" name="destination" required>
+        <br>
+        
+        <label for="waypoints">Intermediate Points (Comma Separated):</label>
+        <input type="text" name="waypoints" placeholder="Eg: Aluva, Kerala, India, Edappally, Kochi, Kerala, India">
+        <br>
+        
+        <button type="submit">Find Route</button>
+    </form>
+
+    {% if route_map %}
+        <h3>Optimized Route:</h3>
+        <div>{{ route_map|safe }}</div>  <!-- Displays the Folium Map -->
+    {% endif %}
+</body>
+</html>
