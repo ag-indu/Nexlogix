@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <style>
+      /* General Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Arial", sans-serif;
+      }
+
+      /* Dark Static Background */
+      body {
+        background: #121212; /* Deep dark gray */
+        color: #ffffff;
+      }
+
+      /* Navbar */
+      .navbar {
+        background: #1a1a1a;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        box-shadow: 0 4px 10px rgba(0, 255, 255, 0.1);
+      }
+
+      .navbar h1 {
+        font-size: 1.8rem;
+        color: #00aaff;
+        text-shadow: 2px 2px 8px rgba(0, 255, 255, 0.3);
+      }
+
+      .nav-buttons {
+        display: flex;
+        gap: 15px;
+      }
+
+      /* Navbar Buttons */
+      .nav-buttons a,
+      .nav-buttons form button {
+        background: #00aaff;
+        color: black;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        text-decoration: none;
+        transition: 0.3s;
+      }
+
+      .nav-buttons a:hover,
+      .nav-buttons form button:hover {
+        background: #0088dd;
+        box-shadow: 0 0 8px #00aaff;
+      }
+
+      /* Main Content */
+      .content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+        text-align: center;
+      }
+
+      h2 {
+        font-size: 2.5rem;
+        text-shadow: 2px 2px 8px rgba(0, 255, 255, 0.3);
+      }
+      .navbar h1 a {
+        color: #00aaff; /* Same neon blue as other buttons */
+        text-decoration: none; /* Remove underline */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div class="navbar">
+      <h1><a href={%url 'business:dashboard'%}>Dashboard</a></h1>
+      <div class="nav-buttons">
+        <a href="{% url 'space:space_optimization_view' %}">Space Optimization</a>
+        <a href="{% url 'routeopt:home' %}">Route Optimization</a>
+        <a href="{% url 'demand:demand_forecast' %}">Demand Forecasting</a>
+        <form action="{% url 'business:logout' %}" method="post">
+          {% csrf_token %}
+          <button type="submit">Logout</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+      <h2>Welcome to your Dashboard!</h2>
+    </div>
+  </body>
+</html>

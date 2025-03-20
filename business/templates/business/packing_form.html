@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Space Optimization</title>
+  </head>
+  <body>
+    <h2>Truck & Box Packing Form</h2>
+    <form method="post">
+      {% csrf_token %}
+      <label>Truck Width:</label>
+      <input type="number" name="truck_width" required /><br />
+      <label>Truck Height:</label>
+      <input type="number" name="truck_height" required /><br />
+      <label>Truck Depth:</label>
+      <input type="number" name="truck_depth" required /><br />
+
+      <label>Number of Box Types:</label>
+      <input type="number" name="num_boxes" id="num_boxes" required /><br />
+
+      <div id="box_inputs"></div>
+
+      <button type="submit">Optimize Packing</button>
+    </form>
+
+    <script>
+      document
+        .getElementById("num_boxes")
+        .addEventListener("change", function () {
+          let count = parseInt(this.value);
+          let container = document.getElementById("box_inputs");
+          container.innerHTML = "";
+
+          if (!isNaN(count) && count > 0) {
+            for (let i = 0; i < count; i++) {
+              container.innerHTML += `
+                        <h3>Box ${i + 1}</h3>
+                        <label>Width:</label> <input type="number" name="box_width_${i}" required><br>
+                        <label>Height:</label> <input type="number" name="box_height_${i}" required><br>
+                        <label>Depth:</label> <input type="number" name="box_depth_${i}" required><br>
+                    `;
+            }
+          }
+        });
+    </script>
+  </body>
+</html>

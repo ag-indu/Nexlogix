@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}NexLogix{% endblock %}</title>
+    <style>
+      /* Navbar Styles */
+      .navbar {
+        background: #1a1a1a;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .navbar a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: bold;
+      }
+      .navbar a:hover {
+        color: #00aaff;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar (Visible after login) -->
+    {% if request.user.is_authenticated %}
+    <div class="navbar">
+      <a href="{% url 'business:dashboard' %}">Dashboard</a>
+      <a href="{% url 'business:space_optimization' %}">Optimize Space</a>
+      <a href="{% url 'business:logout' %}">Logout</a>
+    </div>
+    {% endif %}
+
+    <!-- Page Content -->
+    <div>{% block content %}{% endblock %}</div>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demand Forecast Results</title>
+    <style>
+      /* General Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      /* Dark Theme */
+      body {
+        background-color: #121212;
+        color: #ffffff;
+        text-align: center;
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+
+      /* Image Styling */
+      .forecast-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .forecast-container img {
+        max-width: 100%;
+        height: auto;
+        border: 3px solid #00aaff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .forecast-container img:hover {
+        transform: scale(1.05);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Demand Forecast Results</h1>
+    <div class="forecast-container">
+      {% for image in image_files %}
+      <img src="{{ MEDIA_URL }}{{ image }}" alt="Forecast Graph" />
+      {% endfor %}
+    </div>
+  </body>
+</html>

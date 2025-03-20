@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Truck Packing Result</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+      .truck-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .truck-box {
+        border: 2px solid #333;
+        padding: 15px;
+        margin: 10px;
+        border-radius: 8px;
+        background: #f4f4f4;
+      }
+      .box-list {
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>🚛 Truck Packing Results</h2>
+    <p><strong>Total Trucks Used:</strong> {{ total_trucks }}</p>
+
+    {% if gif_path %}
+    <img src="{% static gif_path %}" alt="Truck Packing Animation" />
+    {% endif %}
+
+    <a href="{% url 'space-optimization' %}">🔄 Try Again</a>
+  </body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <style>
+      /* General Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Arial", sans-serif;
+      }
+
+      /* Animated Background */
+      body {
+        background: linear-gradient(-45deg, #0f0f0f, #1a1a2e, #16213e, #0f3460);
+        background-size: 400% 400%;
+        animation: gradientAnimation 8s ease infinite;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: #ffffff;
+      }
+
+      @keyframes gradientAnimation {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* Form Container */
+      .container {
+        background: rgba(20, 20, 30, 0.9);
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+        width: 350px;
+        text-align: center;
+        backdrop-filter: blur(10px);
+      }
+
+      h2 {
+        margin-bottom: 1rem;
+        color: white;
+        font-size: 1.8rem;
+      }
+
+      /* Form Fields */
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      input,
+      select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid rgba(0, 255, 255, 0.5);
+        border-radius: 5px;
+        font-size: 1rem;
+        background: transparent;
+        color: white;
+        outline: none;
+        transition: 0.3s;
+      }
+
+      input:focus {
+        border-color: #00f2fe;
+        box-shadow: 0 0 8px #00f2fe;
+      }
+
+      /* Login Button */
+      button {
+        background: #00f2fe;
+        color: black;
+        padding: 12px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background: #00c2fe;
+        box-shadow: 0 0 10px #00f2fe;
+      }
+
+      /* Links */
+      p {
+        margin-top: 15px;
+        font-size: 0.9rem;
+      }
+
+      a {
+        color: #00f2fe;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Login</h2>
+      <form method="POST">
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit">Login</button>
+      </form>
+      <p>
+        Don't have an account?
+        <a href="{% url 'business:register_business' %}">Register here</a>
+      </p>
+    </div>
+  </body>
+</html>

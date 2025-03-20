@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demand Forecast</title>
+    <style>
+      /* General Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      /* Dark Theme */
+      body {
+        background-color: #121212;
+        color: #ffffff;
+        text-align: center;
+        padding: 50px;
+      }
+
+      h1 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+
+      /* Button Styling */
+      button {
+        background-color: #00aaff;
+        color: #000;
+        padding: 12px 20px;
+        font-size: 1rem;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+      }
+
+      button:hover {
+        background-color: #0088dd;
+        box-shadow: 0 0 10px rgba(0, 170, 255, 0.7);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Click to Generate Demand Forecast</h1>
+
+    <!-- Button to Generate Demand Forecast -->
+    <form action="{% url 'demand_forecast' %}" method="get">
+      <button type="submit">Generate Forecast</button>
+    </form>
+  </body>
+</html>

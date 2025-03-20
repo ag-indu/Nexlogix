@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Route Optimization</title>
+    <style>
+      /* Reset styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Arial", sans-serif;
+      }
+
+      /* Dark Background */
+      body {
+        background: #121212;
+        color: #ffffff;
+        text-align: center;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Full viewport height */
+        margin: 0;
+      }
+
+      /* Navbar */
+      .navbar {
+        width: 100%;
+        background: #1a1a1a;
+        padding: 15px 0;
+        text-align: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      .navbar a {
+        color: #00aaff;
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: 0.3s;
+      }
+
+      .navbar a:hover {
+        color: #0088dd;
+      }
+
+      /* Main Wrapper */
+      .wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+        flex-wrap: wrap;
+        gap: 20px;
+        max-width: 1200px;
+        width: 100%;
+        margin-top: 60px; /* Pushes content below navbar */
+      }
+
+      /* Left Panel - Form */
+      .form-container {
+        flex: 1;
+        max-width: 400px;
+        background: #1a1a1a;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 15px rgba(0, 255, 255, 0.2);
+      }
+
+      h2 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+      }
+
+      /* Form Styling */
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      label {
+        text-align: left;
+        margin: 10px 0 5px;
+        font-weight: bold;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: none;
+        border-radius: 5px;
+        background: #333;
+        color: #fff;
+      }
+
+      /* Button Styling */
+      button {
+        background: #00aaff;
+        color: black;
+        padding: 12px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background: #0088dd;
+        box-shadow: 0px 0px 8px #00aaff;
+      }
+
+      /* Right Panel - Route Map */
+      .route-container {
+        flex: 2;
+        max-width: 700px;
+        background: #1a1a1a;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 10px rgba(0, 255, 255, 0.2);
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        body {
+          align-items: flex-start; /* Ensures content starts from the top on small screens */
+          height: auto;
+        }
+
+        .wrapper {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .form-container,
+        .route-container {
+          width: 100%;
+          max-width: 90%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div class="navbar">
+      <a href="{% url 'business:dashboard' %}">Dashboard</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="wrapper">
+      <!-- Form Section -->
+      <div class="form-container">
+        <h2>Enter Route Details</h2>
+        <form method="POST">
+          {% csrf_token %}
+
+          <label for="source">Source:</label>
+          <input type="text" name="source" required />
+
+          <label for="destination">Destination:</label>
+          <input type="text" name="destination" required />
+
+          <label for="waypoints">Intermediate Points (Comma Separated):</label>
+          <input
+            type="text"
+            name="waypoints"
+            placeholder="Eg: Aluva, Kerala, India, Edappally, Kochi, Kerala, India"
+          />
+
+          <button type="submit">Find Route</button>
+        </form>
+      </div>
+
+      <!-- Route Map Section -->
+      {% if route_map %}
+      <div class="route-container">
+        <h3>Optimized Route:</h3>
+        <div>{{ route_map|safe }}</div>
+        <!-- Displays the Folium Map -->
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
