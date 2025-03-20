@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Space Optimization</title>
+    <script>
+        function updateBoxFields() {
+            let numTypes = document.getElementById("id_num_types").value;
+            let boxFields = document.getElementById("boxFields");
+            boxFields.innerHTML = "";  
+
+            for (let i = 1; i <= numTypes; i++) {
+                boxFields.innerHTML += `
+                    <h3>Box Type ${i}</h3>
+                    <label>Width:</label> <input type="number" name="width_${i}" required><br>
+                    <label>Height:</label> <input type="number" name="height_${i}" required><br>
+                    <label>Depth:</label> <input type="number" name="depth_${i}" required><br>
+                    <label>Count:</label> <input type="number" name="count_${i}" required><br><br>
+                `;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Enter Truck and Box Details</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.truck_width.label }} {{ form.truck_width }}<br>
+        {{ form.truck_height.label }} {{ form.truck_height }}<br>
+        {{ form.truck_depth.label }} {{ form.truck_depth }}<br>
+        <label>{{ form.num_types.label }}</label> {{ form.num_types }} 
+        <button type="button" onclick="updateBoxFields()">Add Boxes</button>
+        <br><br>
+        <div id="boxFields"></div>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
