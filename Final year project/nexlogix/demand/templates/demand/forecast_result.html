@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Demand Forecast Results</title>
+</head>
+<body>
+    <h1>Demand Forecast Results</h1>
+    {% for image in image_files %}
+        <img src="{{ MEDIA_URL }}{{ image }}" alt="Forecast Graph">
+    {% endfor %}
+</body>
+</html>
+
